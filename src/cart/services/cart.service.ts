@@ -3,13 +3,21 @@ import { Injectable } from '@nestjs/common';
 import { v4 } from 'uuid';
 
 import { Cart } from '../models';
+import { Client } from 'pg';
 
 @Injectable()
 export class CartService {
+  constructor(private readonly db: Client) {}
+
   private userCarts: Record<string, Cart> = {};
 
-  findByUserId(userId: string): Cart {
-    return this.userCarts[userId];
+  findByUserId(userId: string): any {
+    const data = this.db.query(
+      'select c.id as cart_id, pr from carts c inner join cart_items ci on (c.id = ci.cart_id) where c.user_id = ?',
+      [userId],
+    );
+
+    return data;
   }
 
   createByUserId(userId: string) {

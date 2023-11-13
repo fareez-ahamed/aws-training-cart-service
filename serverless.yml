@@ -1,4 +1,6 @@
 service: aws-training-cart-service
+frameworkVersion: "3"
+useDotenv: true
 
 plugins:
   - serverless-offline
@@ -6,6 +8,10 @@ plugins:
 provider:
   name: aws
   runtime: nodejs14.x
+  environment: 
+    DB_HOST: ${env:DB_HOST}
+    DB_USER: ${env:DB_USER}
+    DB_PASSWORD: ${env:DB_PASSWORD}
 
 functions:
   main:

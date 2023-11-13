@@ -162,13 +162,18 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-training-cart-service/dev/1699887530966-2023-11-13T14:58:50.966Z/aws-training-cart-service.zip"
+          "S3Key": "serverless/aws-training-cart-service/dev/1699888673017-2023-11-13T15:17:53.017Z/aws-training-cart-service.zip"
         },
         "Handler": "dist/main.handler",
         "Runtime": "nodejs14.x",
         "FunctionName": "aws-training-cart-service-dev-main",
         "MemorySize": 1024,
         "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "CONNECTION_STRING": "connstring"
+          }
+        },
         "Role": {
           "Fn::GetAtt": [
             "IamRoleLambdaExecution",
@@ -180,7 +185,7 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionMyDauGWNCJUvWxeuZp9L0dQCETV2djCRYX7Mg4vfM": {
+    "MainLambdaVersion0Ocn3q074rOHkYb3xWXj8eC2SM6ouGfT1lmesgg0AA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
@@ -312,7 +317,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1699887523701": {
+    "ApiGatewayDeployment1699888666130": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -375,7 +380,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionMyDauGWNCJUvWxeuZp9L0dQCETV2djCRYX7Mg4vfM"
+        "Ref": "MainLambdaVersion0Ocn3q074rOHkYb3xWXj8eC2SM6ouGfT1lmesgg0AA"
       },
       "Export": {
         "Name": "sls-aws-training-cart-service-dev-MainLambdaFunctionQualifiedArn"
